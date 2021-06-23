@@ -80,7 +80,7 @@ func scre3n() {
 func err0r(oNe error, msg string) {
 	if oNe != nil {
 		scre3n()
-		fmt.Println("[x]- ", msg)
+		fmt.Println("[x]*", msg)
 		os.Exit(0)
 		return
 	}
@@ -151,12 +151,12 @@ func ForbidFinder(domain string, wl string, nf bool, TimeOut int, OnlyOk bool, i
 				DirectorySecCase := "Directory /" + WordList
 				Directory3RdCase := "Directory listing for /" + WordList
 				if strings.Contains(bodyString, Directory1StCase) || strings.Contains(bodyString, DirectorySecCase) || strings.Contains(bodyString, Directory3RdCase) {
-					fmt.Println("[+] - Directory listing [", FullUrl, "] Response code [", reQ.StatusCode, "]")
+					fmt.Println("[+]*", FullUrl, "*", reQ.StatusCode)
 
 				}
 			} else {
 				if nf {
-					fmt.Println("[X] NOT FOUND : [", FullUrl, "] With code -> [", reQ.StatusCode, "]")
+					fmt.Println("[X]*", FullUrl, "*", reQ.StatusCode)
 				} else {
 				}
 			}
@@ -183,12 +183,12 @@ func ForbidFinder(domain string, wl string, nf bool, TimeOut int, OnlyOk bool, i
 				DirectorySecCase := "Directory /" + WordList
 				Directory3RdCase := " - " + WordList
 				if strings.Contains(bodyString, Directory1StCase) || strings.Contains(bodyString, DirectorySecCase) || strings.Contains(bodyString, Directory3RdCase) {
-					fmt.Println("[+] - Directory listing [", FullUrl, "] Response code -> [", reQ.StatusCode, "]")
+					fmt.Println("[+]*", FullUrl, "*", reQ.StatusCode)
 
 				}
 			} else {
 				if nf {
-					fmt.Println("[X] NOT FOUND : [", FullUrl, "] With code -> [", reQ.StatusCode, "]")
+					fmt.Println("[X]*", FullUrl, "*", reQ.StatusCode)
 				} else {
 
 				}
@@ -229,7 +229,7 @@ func do3r(domain string, path string, TimeOut int, OnlyOk bool) {
 	FinalLook := fmt.Sprintf("%s/%s/", domain, path)
 	FinalLookToReq := fmt.Sprintf("%s/%s/", domain, path)
 	if !OnlyOk {
-		fmt.Println("[+] - FOUND [", FinalLook, "] With code -> [403]")
+		fmt.Println("[+]*", FinalLook, "*403")
 	}
 
 	for t0Bypass2 := range ByPassWithHeader {
@@ -255,7 +255,7 @@ func do3r(domain string, path string, TimeOut int, OnlyOk bool) {
 			DirectorySecCase := "Directory /" + path
 			Directory3RdCase := " - " + path
 			if strings.Contains(bodyString, Directory1StCase) || strings.Contains(bodyString, DirectorySecCase) || strings.Contains(bodyString, Directory3RdCase) {
-				fmt.Println("[+] - BYPASSED : payload [", ByPassWithHeader[t0Bypass2], ": 127.0.0.1 ] : ] ", FinalLook, " -> Response status code [", resp.StatusCode, "]")
+				fmt.Println("[+]*", ByPassWithHeader[t0Bypass2], ": 127.0.0.1*", FinalLook, "*", resp.StatusCode)
 
 			}
 			//finalWG.Done()
@@ -287,13 +287,13 @@ func do3r(domain string, path string, TimeOut int, OnlyOk bool) {
 			DirectorySecCase := "Directory /" + path
 			Directory3RdCase := " - " + path
 			if strings.Contains(bodyString, Directory1StCase) || strings.Contains(bodyString, DirectorySecCase) || strings.Contains(bodyString, Directory3RdCase) {
-				fmt.Println("[+] - BYPASSED : payload [", ByPass[t0Bypass], "] ", FinalLook, " -> Response status code [", reQ.StatusCode, "]")
+				fmt.Println("[+]*", ByPass[t0Bypass], "*", FinalLook, "*", reQ.StatusCode)
 
 			}
 			//stime.Sleep(10 * time.Second)
 		} else {
 			if !OnlyOk {
-				fmt.Println("[-] - FAILED : payload [", ByPass[t0Bypass], "] ", FullUrl, " -> Response status code [", reQ.StatusCode, "]")
+				fmt.Println("[-]*", ByPass[t0Bypass], "*", FullUrl, "*", reQ.StatusCode)
 			}
 		}
 	}
