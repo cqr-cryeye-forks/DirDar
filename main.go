@@ -262,7 +262,7 @@ func do3r(domain string, path string, TimeOut int, OnlyOk bool) {
 			//time.Sleep(10 * time.Second)
 		} else {
 			if !OnlyOk {
-				fmt.Println("[-] - FAILED : payload [", ByPassWithHeader[t0Bypass2], ": 127.0.0.1 ] ", FinalLook, " -> Response status code [", resp.StatusCode, "]")
+				fmt.Println("[-]*", ByPassWithHeader[t0Bypass2], ": 127.0.0.1*", FinalLook, "*", resp.StatusCode)
 			}
 		}
 	}
