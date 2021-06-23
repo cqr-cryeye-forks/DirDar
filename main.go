@@ -323,7 +323,7 @@ ______ _     ______
 	      GrodRiket security team
 		Love from :`
 	var from = "Yemen"
-// 	fmt.Println(banner, about, from,"\n")
+	fmt.Println(banner, about, from,"\n")
 
 }
 func h3lp() {
@@ -331,7 +331,7 @@ func h3lp() {
 	os.Exit(0)
 }
 func main() {
-	bann3r()
+// 	bann3r()
 	var wg sync.WaitGroup
 	DomainsList := make(chan string)
 
