@@ -21,16 +21,16 @@ var SingleScan = false
 /*
 This colors code from -> https://github.com/ethicalhackingplayground/Zin/blob/master/zin.go
 */
-var Reset = "\033[0m"
-var Red = "\033[31m"
-var Green = "\033[32m"
-var Yellow = "\033[33m"
-var Blue = "\033[34m"
-var Purple = "\033[35m"
-var Cyan = "\033[36m"
-var Gray = "\033[37m"
-var White = "\033[97m"
-var Dark = "\033[90m"
+// var Reset = "\033[0m"
+// var Red = "\033[31m"
+// var Green = "\033[32m"
+// var Yellow = "\033[33m"
+// var Blue = "\033[34m"
+// var Purple = "\033[35m"
+// var Cyan = "\033[36m"
+// var Gray = "\033[37m"
+// var White = "\033[97m"
+// var Dark = "\033[90m"
 var clear map[string]func() //create a map for storing clear funcs
 
 func init() {
@@ -45,18 +45,18 @@ func init() {
 		cmd.Stdout = os.Stdout
 		cmd.Run()
 	}
-	if runtime.GOOS == "windows" {
-		Reset = ""
-		Dark = ""
-		Red = ""
-		Green = ""
-		Yellow = ""
-		Blue = ""
-		Purple = ""
-		Cyan = ""
-		Gray = ""
-		White = ""
-	}
+// 	if runtime.GOOS == "windows" {
+// 		Reset = ""
+// 		Dark = ""
+// 		Red = ""
+// 		Green = ""
+// 		Yellow = ""
+// 		Blue = ""
+// 		Purple = ""
+// 		Cyan = ""
+// 		Gray = ""
+// 		White = ""
+// 	}
 }
 
 /////////////////////////////////////////////////////////
@@ -80,7 +80,7 @@ func scre3n() {
 func err0r(oNe error, msg string) {
 	if oNe != nil {
 		scre3n()
-		fmt.Println("\n\n		[x] - ", Red, msg, White, "\n\n")
+		fmt.Println("[x]- ", msg)
 		os.Exit(0)
 		return
 	}
@@ -89,9 +89,9 @@ func err0r(oNe error, msg string) {
 ///| This function is to find the forbidden directories .....
 func ForbidFinder(domain string, wl string, nf bool, TimeOut int, OnlyOk bool, isItSingle bool) {
 
-	if isItSingle {
-		fmt.Println("			-[ YOUR TARGET : ", domain, " ]-\n\n")
-	}
+// 	if isItSingle {
+// 		fmt.Println("-[ YOUR TARGET : ", domain, " ]-\n")
+// 	}
 	timeout := time.Duration(TimeOut * 1000000)
 	tr := &http.Transport{
 		MaxIdleConns:        20,
@@ -151,12 +151,12 @@ func ForbidFinder(domain string, wl string, nf bool, TimeOut int, OnlyOk bool, i
 				DirectorySecCase := "Directory /" + WordList
 				Directory3RdCase := "Directory listing for /" + WordList
 				if strings.Contains(bodyString, Directory1StCase) || strings.Contains(bodyString, DirectorySecCase) || strings.Contains(bodyString, Directory3RdCase) {
-					fmt.Println(White, "  [+] -", Green, " Directory listing ", White, "[", Cyan, FullUrl, White, "]", "Response code ", "[", reQ.StatusCode, "]")
+					fmt.Println("[+] - Directory listing [", FullUrl, "] Response code [", reQ.StatusCode, "]")
 
 				}
 			} else {
 				if nf {
-					fmt.Println(Purple, "   [X] NOT FOUND : ", White, "[", Blue, FullUrl, White, "]", " With code -> ", "[", Red, reQ.StatusCode, White, "]")
+					fmt.Println("[X] NOT FOUND : [", FullUrl, "] With code -> [", reQ.StatusCode, "]")
 				} else {
 				}
 			}
@@ -183,12 +183,12 @@ func ForbidFinder(domain string, wl string, nf bool, TimeOut int, OnlyOk bool, i
 				DirectorySecCase := "Directory /" + WordList
 				Directory3RdCase := " - " + WordList
 				if strings.Contains(bodyString, Directory1StCase) || strings.Contains(bodyString, DirectorySecCase) || strings.Contains(bodyString, Directory3RdCase) {
-					fmt.Println("\n", White, "	  [+] - ", Green, "Directory listing ", White, "[", Blue, FullUrl, White, "]", "Response code -> ", "[", Green, reQ.StatusCode, White, "]", "\n")
+					fmt.Println("[+] - Directory listing [", FullUrl, "] Response code -> [", reQ.StatusCode, "]")
 
 				}
 			} else {
 				if nf {
-					fmt.Println(Purple, "   [X] NOT FOUND : ", White, "[", Blue, FullUrl, White, "]", " With code -> ", "[", Red, reQ.StatusCode, White, "]")
+					fmt.Println("[X] NOT FOUND : [", FullUrl, "] With code -> [", reQ.StatusCode, "]")
 				} else {
 
 				}
@@ -229,7 +229,7 @@ func do3r(domain string, path string, TimeOut int, OnlyOk bool) {
 	FinalLook := fmt.Sprintf("%s/%s/", domain, path)
 	FinalLookToReq := fmt.Sprintf("%s/%s/", domain, path)
 	if !OnlyOk {
-		fmt.Println(White, "	[+]", Cyan, "- FOUND", White, "[", Blue, FinalLook, White, "]", "  With code ->", "[", Yellow, "403", White, "]")
+		fmt.Println("[+] - FOUND [", FinalLook, "] With code -> [403]")
 	}
 
 	for t0Bypass2 := range ByPassWithHeader {
@@ -255,14 +255,14 @@ func do3r(domain string, path string, TimeOut int, OnlyOk bool) {
 			DirectorySecCase := "Directory /" + path
 			Directory3RdCase := " - " + path
 			if strings.Contains(bodyString, Directory1StCase) || strings.Contains(bodyString, DirectorySecCase) || strings.Contains(bodyString, Directory3RdCase) {
-				fmt.Println("\n", Yellow, "	  [+] - BYPASSED : payload", White, "[", Green, ByPassWithHeader[t0Bypass2], ": 127.0.0.1", "] :", "] ", Blue, FinalLook, White, " -> Response status code [", Green, resp.StatusCode, White, "]\n")
+				fmt.Println("[+] - BYPASSED : payload [", ByPassWithHeader[t0Bypass2], ": 127.0.0.1 ] : ] ", FinalLook, " -> Response status code [", resp.StatusCode, "]")
 
 			}
 			//finalWG.Done()
 			//time.Sleep(10 * time.Second)
 		} else {
 			if !OnlyOk {
-				fmt.Println(White, "	  [-]", Yellow, " - FAILED : payload", White, "[", Green, ByPassWithHeader[t0Bypass2], ": 127.0.0.1", White, "] ", Blue, FinalLook, White, " -> Response status code [", Red, resp.StatusCode, White, "]")
+				fmt.Println("[-] - FAILED : payload [", ByPassWithHeader[t0Bypass2], ": 127.0.0.1 ] ", FinalLook, " -> Response status code [", resp.StatusCode, "]")
 			}
 		}
 	}
@@ -287,13 +287,13 @@ func do3r(domain string, path string, TimeOut int, OnlyOk bool) {
 			DirectorySecCase := "Directory /" + path
 			Directory3RdCase := " - " + path
 			if strings.Contains(bodyString, Directory1StCase) || strings.Contains(bodyString, DirectorySecCase) || strings.Contains(bodyString, Directory3RdCase) {
-				fmt.Println("\n", Yellow, "	  [+] - BYPASSED : payload", White, "[", Green, ByPass[t0Bypass], White, "] ", Blue, FinalLook, White, " -> Response status code [", Green, reQ.StatusCode, White, "]\n")
+				fmt.Println("[+] - BYPASSED : payload [", ByPass[t0Bypass], "] ", FinalLook, " -> Response status code [", reQ.StatusCode, "]")
 
 			}
 			//stime.Sleep(10 * time.Second)
 		} else {
 			if !OnlyOk {
-				fmt.Println(White, "	  [-]", Yellow, " - FAILED : payload", White, "[", Green, ByPass[t0Bypass], White, "] ", Blue, FullUrl, White, " -> Response status code [", Red, reQ.StatusCode, White, "]")
+				fmt.Println("[-] - FAILED : payload [", ByPass[t0Bypass], "] ", FullUrl, " -> Response status code [", reQ.StatusCode, "]")
 			}
 		}
 	}
@@ -322,12 +322,12 @@ ______ _     ______
 		Twitter : @m4dm0e	
 	      GrodRiket security team
 		Love from :`
-	var from = Red + "Ye" + White + "me" + Dark + "n"
-	fmt.Println(banner, about, from, Reset, "\n\n")
+	var from = "Yemen"
+// 	fmt.Println(banner, about, from,"\n")
 
 }
 func h3lp() {
-	fmt.Println("\n", White, "	[-]", Red, "No input provided ", White, "(Run the tool again with --help flag for more information .)\n\n")
+	fmt.Println("[-] No input provided (Run the tool again with --help flag for more information .)")
 	os.Exit(0)
 }
 func main() {
